@@ -2,8 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule } from '@nestjs/swagger';
 ;
-import { join } from 'path';
-import * as express from 'express';
+
 import morgan from 'morgan';
 import { swagConfig } from './utils/swagger_config.ts';
 
