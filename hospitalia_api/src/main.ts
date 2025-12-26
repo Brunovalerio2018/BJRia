@@ -1,8 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { SwaggerModule } from '@nestjs/swagger';
+import { swagConfig } from './utils/swagger_config.ts';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(process.env.PORT ?? 3000);
+
+  // Swagger
+  const document = SwaggerModule.createDocument(app, swagConfig);
+  SwaggerModule.setup('api', app, document);
+
+  const port = 5050;
+  await app.listen(port);
+  console.log(`🚀 API rodando em http://localhost:${port}/api`);
 }
 bootstrap();
