@@ -10,12 +10,6 @@ async function bootstrap() {
   // Middleware de logs HTTP
   app.use(morgan('dev'));
 
-  // Middleware CORS - liberar apenas localhost
-  app.enableCors({
-    origin: ['http://localhost:3000'], // pode ajustar se necessário
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    credentials: true,
-  });
 
   // Configuração do Swagger
   const document = SwaggerModule.createDocument(app, swagConfig);
