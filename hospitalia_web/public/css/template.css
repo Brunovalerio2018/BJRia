@@ -1,0 +1,214 @@
+/* menu.css adaptado para estilo de login BJRia */
+
+/* Variáveis do tema */
+:root {
+  --cor-primaria: #1a439c; /* roxo escuro */
+  --cor-secundaria: #4e63d7; /* roxo claro */
+  --cor-fundo: #f5f5f5; /* fundo geral */
+  --cor-input-fundo: #fff; 
+  --cor-texto: #333;
+  --font-principal: sans-serif;
+  --tamanho-font-pequeno: 12px;
+  --largura-logo: 150px;
+  --raio-borda: 20px;
+  --raio-borda-botao: 30px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-principal);
+}
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 250px;
+  background-color: var(--cor-primaria);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.sidebar header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.sidebar header img {
+  max-width: var(--largura-logo);
+  height: auto;
+  border-radius: 15px;
+}
+
+.sidebar ul {
+  list-style: none;
+  flex-grow: 1;
+}
+
+.sidebar ul li {
+  margin-bottom: 20px;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s;
+  padding: 10px 15px;
+  border-radius: var(--raio-borda);
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:focus {
+  background-color: var(--cor-secundaria);
+  transform: translateX(5px);
+}
+
+.sidebar ul li a .material-icons {
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background-color: var(--cor-fundo);
+}
+
+/* PERFIL E CARTÕES */
+.perfil-container {
+  max-width: 700px;
+  background: #fff;
+  border-radius: var(--raio-borda);
+  padding: 25px 30px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.perfil-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.perfil-foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 25px;
+  border: 2px solid var(--cor-primaria);
+}
+
+.perfil-info {
+  flex: 1;
+}
+
+.perfil-nome {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--cor-primaria);
+}
+
+.perfil-dados {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+/* SEÇÕES */
+.lanches-favoritos,
+.avaliacoes-lanches,
+.minhas-notas {
+  margin-bottom: 30px;
+}
+
+.lanches-favoritos h3,
+.avaliacoes-lanches h3,
+.minhas-notas h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--cor-primaria);
+  border-bottom: 2px solid var(--cor-primaria);
+  padding-bottom: 5px;
+}
+
+.lista-lanches,
+.lista-avaliacoes,
+.lista-notas {
+  list-style: none;
+  padding-left: 0;
+}
+
+.lanche-item {
+  font-size: 18px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  color: #333;
+}
+
+.favorito-icon {
+  color: #e91e63;
+  margin-left: 8px;
+  font-size: 20px;
+}
+
+.avaliacao-item {
+  margin-bottom: 18px;
+  font-size: 16px;
+  color: #444;
+}
+
+.avaliacao-item strong {
+  color: var(--cor-primaria);
+}
+
+.avaliacao-item p {
+  margin-top: 5px;
+  font-style: italic;
+  color: #666;
+}
+
+.nota-item {
+  background: #e6e6ff; /* tom mais claro de roxo */
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.acoes-nota button {
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 10px;
+  border-radius: var(--raio-borda-botao);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.acoes-nota button:hover,
+.acoes-nota button:focus {
+  background-color: var(--cor-secundaria);
+}
