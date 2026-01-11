@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { SwaggerModule } from '@nestjs/swagger';
 import morgan from 'morgan';
 import { swagConfig } from './utils/swagger_config.ts';
-import { OperatorSubscriber } from 'rxjs/internal/operators/OperatorSubscriber';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

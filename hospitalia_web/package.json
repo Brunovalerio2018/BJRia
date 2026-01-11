@@ -1,7 +1,7 @@
 {
-  "name": "projeto_backend_3marias_delivery_web",
+  "name": "hospitalia_web",
   "version": "1.0.0",
-  "description": "Projeto web com estrutura do mobile",
+  "description": " platform for hospital management ",
   "license": "ISC",
   "author": "",
   "main": "index.js",

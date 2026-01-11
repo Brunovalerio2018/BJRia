@@ -1,22 +1,24 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
-import { AppDataSource } from './db/ormconfig';
+import { ConfigModule } from '@nestjs/config';
+import { User } from './users/entities/user.entity';
 
 @Module({
   imports: [
-    UsersModule,
+    // ⬅️ ISSO TEM QUE VIR PRIMEIRO
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.HOST_BD,
-      port: Number(process.env.PORT_BD) || 5432,
+      port: Number(process.env.PORT_BD),
       username: process.env.USERNAME_BD,
-      password: process.env.SENHA_BD,
+      password: String(process.env.SENHA_BD), // 👈 FORÇA string
       database: process.env.DATABASE_NAME,
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: false,
-      logging: true,
+      entities: [User],
+      synchronize: true,
     }),
   ],
 })

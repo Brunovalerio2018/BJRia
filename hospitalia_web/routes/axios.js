@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 const api = axios.create({
-  baseURL: "http://localhost:1141", // Ajuste para o endereço correto do seu backend
+  baseURL: "http://localhost:5050", // Ajuste para o endereço correto do seu backend
   headers: {
     "x-app-origin": "hospitalia_api",
     "Content-Type": "application/json"
