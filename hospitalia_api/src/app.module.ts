@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { User } from './users/entities/user.entity';
+import { PatientsModule } from './patients/patients.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
-    // ⬅️ ISSO TEM QUE VIR PRIMEIRO
+    // ⚠️ SEMPRE PRIMEIRO
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -13,13 +14,17 @@ import { User } from './users/entities/user.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.HOST_BD,
-      port: Number(process.env.PORT_BD),
+      port: Number(process.env.PORT_BD) || 5432,
       username: process.env.USERNAME_BD,
-      password: String(process.env.SENHA_BD), // 👈 FORÇA string
+      password: String(process.env.SENHA_BD),
       database: process.env.DATABASE_NAME,
-      entities: [User],
-      synchronize: true,
+      autoLoadEntities: true,
+      synchronize: true, // só em DEV
     }),
+
+    PatientsModule,
+
+    AdminModule,
   ],
 })
 export class AppModule {}

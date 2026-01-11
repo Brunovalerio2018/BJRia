@@ -1,28 +1,25 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { User } from './../../users/entities/user.entity';
+import { AppDataSource } from '../data-source';
+import { User } from 'src/users/entities/user.entity';
 import * as bcrypt from 'bcryptjs';
 
-@Injectable()
-export class UsersSeed implements OnModuleInit {
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepo: Repository<User>,
-  ) {}
+export async function createAdmin() {
+  const userRepo = AppDataSource.getRepository(User);
 
-  async onModuleInit() {
-    const count = await this.userRepo.count();
+  const adminExists = await userRepo.findOne({
+    where: { email: 'admin@admin.com' },
+  });
 
-    if (count === 0) {
-      const admin = this.userRepo.create({
-        name: 'Admin',
-        email: 'admin@admin.com',
-        password: await bcrypt.hash('admin123', 10),
-      });
+  if (!adminExists) {
+    const admin = userRepo.create({
+      name: 'Administrador',
+      email: 'admin@admin.com',
+      password: await bcrypt.hash('admin123', 10),
+      role: 'admin',
+    });
 
-      await this.userRepo.save(admin);
-      console.log('✅ Usuário admin criado');
-    }
+    await userRepo.save(admin);
+    console.log('✅ Admin criado com sucesso');
+  } else {
+    console.log('ℹ️ Admin já existe');
   }
 }

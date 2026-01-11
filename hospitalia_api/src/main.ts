@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { SwaggerModule } from '@nestjs/swagger';
 import morgan from 'morgan';
 import { swagConfig } from './utils/swagger_config.ts';
+import { createAdmin } from './db/seeds/create-admin';
 
 
 async function bootstrap() {
@@ -30,6 +31,7 @@ async function bootstrap() {
     app.enableCors({
     credentials: true, // Permite envio de cookies e cabeçalhos de autenticação
   });
+    await createAdmin(); // 👈 sincroniza SÓ o admin
 
     const port = 5050;
     await app.listen(port);
