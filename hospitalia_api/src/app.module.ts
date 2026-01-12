@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { APP_GUARD } from "@nestjs/core";
 
@@ -10,6 +9,15 @@ import { AdminModule } from './admin/admin.module';
 import { PatientsModule } from './patients/patients.module';
 import { HealthModule } from './common/health/health.module';
 import { IaModule } from './ia/ia.module';
+
+import { HospitalsModule } from './hospitals/hospitals.module';
+import { BedsModule } from './beds/beds.module';
+import { TriageModule } from './triage/triage.module';
+import { EpidemiologyModule } from './epidemiology/epidemiology.module';
+
+import { SettingsModule } from './settings/settings.module';
+import { ConfigModule } from "@nestjs/config";
+import { AuditModule } from "./audit/audit.module";
 
 @Module({
   imports: [
@@ -27,9 +35,17 @@ import { IaModule } from './ia/ia.module';
     UsersModule,
     AuthModule,      // <- precisa vir antes do APP_GUARD
     AdminModule,
+    UsersModule,
     PatientsModule,
     HealthModule,
     IaModule,
+    ConfigModule,
+    HospitalsModule,
+    BedsModule,
+    TriageModule,
+    EpidemiologyModule,
+    AuditModule,
+    SettingsModule,
   ],
   providers: [
     {

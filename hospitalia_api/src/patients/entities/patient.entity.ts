@@ -1,8 +1,8 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -11,21 +11,25 @@ export class Patient {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 150 })
   nome: string;
 
-  @Column()
+  @Column({ type: 'int' })
   idade: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 20 })
   sexo: string;
 
-  @Column()
-  telefone: string;
+  @Column({ type: 'varchar', length: 20, nullable: true })
+  telefone?: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({
+    type: 'timestamp',
+    default: () => 'CURRENT_TIMESTAMP',
+    onUpdate: 'CURRENT_TIMESTAMP',
+  })
   updatedAt: Date;
 }

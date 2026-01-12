@@ -1,26 +1,53 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Patient } from './entities/patient.entity';
+import { AuditService } from '../audit/audit.service';
 import { CreatePatientDto } from './dto/create-patient.dto';
 import { UpdatePatientDto } from './dto/update-patient.dto';
 
 @Injectable()
 export class PatientsService {
-  create(createPatientDto: CreatePatientDto) {
-    return 'This action adds a new patient';
+  constructor(
+    @InjectRepository(Patient)
+    private readonly patientRepo: Repository<Patient>,
+    private readonly auditService: AuditService,
+  ) {}
+
+  async create(dto: CreatePatientDto, userId: number) {
+    const patient = this.patientRepo.create(dto);
+    await this.patientRepo.save(patient);
+
+    await this.auditService.createLog(userId, 'CREATE_PATIENT', 'Patient', patient);
+
+    return patient;
   }
 
   findAll() {
-    return `This action returns all patients`;
+    return this.patientRepo.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} patient`;
+    return this.patientRepo.findOne({ where: { id } });
   }
 
-  update(id: number, updatePatientDto: UpdatePatientDto) {
-    return `This action updates a #${id} patient`;
+  async update(id: number, dto: UpdatePatientDto, userId: number) {
+    await this.patientRepo.update(id, dto);
+    const patient = await this.findOne(id);
+
+    await this.auditService.createLog(userId, 'UPDATE_PATIENT', 'Patient', patient);
+
+    return patient;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} patient`;
+  async remove(id: number, userId: number) {
+    const patient = await this.findOne(id);
+    if (!patient) return null;
+
+    await this.patientRepo.delete(id);
+
+    await this.auditService.createLog(userId, 'DELETE_PATIENT', 'Patient', patient);
+
+    return { deleted: true };
   }
 }

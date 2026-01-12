@@ -5,6 +5,7 @@ import { AuthGuard } from './auth.guard';
 import { UsersModule } from '../users/users.module';
 import { jwtConstants } from './constantes';
 import { AutorizacaoService } from './auth.service';
+import { JwtStrategy } from './strategies/jwt.strategy/jwt.strategy';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { AutorizacaoService } from './auth.service';
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  providers: [AutorizacaoService, AuthGuard],
+  providers: [AutorizacaoService, AuthGuard, JwtStrategy],
   exports: [AutorizacaoService, AuthGuard, JwtModule], // <-- exporta o JwtModule
 })
 export class AuthModule {}
