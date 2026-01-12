@@ -1,105 +1,122 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const statusDiv = document.getElementById('status');
-  statusDiv.style.display = 'none'; // Esconde o status por padrão
 
-  // Verifica conexão com a API
-  axios.get('http://localhost:1141/')
-    .then(() => {
-      // Mostra um ícone verde pequeno no canto se conectado
-      mostrarStatusConexao(true);
-    })
-    .catch(() => {
-      // Não mostra nada se falhar (ou pode mostrar um ícone vermelho, se quiser)
-      mostrarStatusConexao(false);
+  /* ==================================================
+     STATUS DA API – ATUALIZAÇÃO EM TEMPO REAL
+  ================================================== */
+  async function atualizarStatus() {
+    const panel = document.getElementById('statusPanel');
+    if (!panel) return;
+
+    try {
+      const res = await axios.get('http://localhost:5050/api/status');
+      const components = res.data.components || [];
+
+      panel.innerHTML = components.map(c => `
+        <div class="status-item">
+          <span class="status-dot pulse" style="background:${c.colorCode}"></span>
+          <strong>${c.name}</strong>: ${c.status}
+        </div>
+      `).join('');
+
+    } catch (err) {
+      panel.innerHTML = `
+        <div><span class="status-dot pulse" style="background:#dc3545"></span> API: Offline</div>
+        <div><span class="status-dot pulse" style="background:#dc3545"></span> Banco: Offline</div>
+        <div><span class="status-dot pulse" style="background:#dc3545"></span> IA: Offline</div>
+      `;
+    }
+  }
+
+  atualizarStatus();
+  setInterval(atualizarStatus, 10000);
+
+
+  /* ==================================================
+     ANIMAÇÃO DE LOGIN – EFEITO FOLHA (DIREITA → ESQUERDA)
+  ================================================== */
+
+  const loginBtn = document.getElementById('openLogin');
+  const loginOverlay = document.getElementById('loginOverlay');
+  const closeLogin = document.getElementById('closeLogin');
+
+  if (loginBtn && loginOverlay) {
+    loginBtn.addEventListener('click', e => {
+      e.preventDefault();
+
+      loginOverlay.style.display = 'flex';
+
+      // força reflow para a animação funcionar
+      loginOverlay.offsetHeight;
+
+      loginOverlay.classList.add('active');
     });
-
-  // Animação da logo (opcional)
-  const logo = document.querySelector('.logo');
-  if (logo) {
-    logo.style.transform = 'translateY(-100px)';
-    setTimeout(() => {
-      logo.style.transition = 'transform 0.5s ease-out';
-      logo.style.transform = 'translateY(0)';
-    }, 100);
   }
 
-  // Redireciona se já estiver logado
-  const token = localStorage.getItem('userToken');
-  if (token) {
-    window.location.href = '/tabRoutes';
+  if (closeLogin && loginOverlay) {
+    closeLogin.addEventListener('click', () => {
+      loginOverlay.classList.remove('active');
+
+      setTimeout(() => {
+        loginOverlay.style.display = 'none';
+      }, 800);
+    });
   }
+
+
+  /* ==================================================
+     LOGIN (JWT / API)
+  ================================================== */
+
+  const loginForm = document.getElementById('loginForm');
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const usuario = document.getElementById('email').value;
+      const senha = document.getElementById('password').value;
+
+      try {
+        // 🔐 EXEMPLO REAL
+        /*
+        const res = await axios.post('http://localhost:5050/api/auth/login', {
+          email: usuario,
+          password: senha
+        });
+
+        localStorage.setItem('token', res.data.access_token);
+        */
+
+        // 🔧 SIMULAÇÃO
+        if (usuario && senha) {
+          localStorage.setItem('token', 'fake-jwt-token');
+
+          loginOverlay.classList.remove('active');
+
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 700);
+        } else {
+          alert('Credenciais inválidas');
+        }
+
+      } catch (err) {
+        alert('Erro ao autenticar');
+      }
+    });
+  }
+
 });
 
-function mostrarStatusConexao(status) {
-  let statusIcon = document.getElementById('statusIcon');
-  if (!statusIcon) {
-    statusIcon = document.createElement('span');
-    statusIcon.id = 'statusIcon';
-    statusIcon.style.position = 'fixed';
-    statusIcon.style.bottom = '10px';
-    statusIcon.style.right = '10px';
-    statusIcon.style.fontSize = '18px';
-    statusIcon.style.zIndex = '9999';
-    document.body.appendChild(statusIcon);
-  }
-  if (status === "ok") {
-    statusIcon.innerHTML = '🟢 <span style="font-size:12px;"></span>';
-    statusIcon.title = 'Conectado à API';
-  } else if (status === "manutencao") {
-    statusIcon.innerHTML = '🟠 <span style="font-size:12px;">Manutenção</span>';
-    statusIcon.title = 'API em manutenção';
-  } else {
-    statusIcon.innerHTML = '🔴 <span style="font-size:12px;">Off</span>';
-    statusIcon.title = 'Erro ao conectar à API';
-  }
-}
-function toggleSenha() {
-  const senhaField = document.getElementById('senha');
-  const type = senhaField.type === 'password' ? 'text' : 'password';
-  senhaField.type = type;
-}
 
-async function login() {
-  const usuario = document.getElementById('usuario').value;
-  const senha = document.getElementById('senha').value;
-  const salvarUsuario = document.getElementById('salvarUsuario').checked;
+/* ==================================================
+   VISITAR SEM LOGIN
+================================================== */
+function visitWithoutLogin() {
+  const dashboard = document.getElementById('dashboard');
 
-  if (!usuario || !senha) {
-    alert('Preencha todos os campos!');
-    return;
-  }
-
-  document.getElementById('loading').classList.remove('hidden');
-  // Não mostra status de autenticação para o usuário
-  // document.getElementById('status').textContent = 'Autenticando...';
-
-  try {
-    const response = await axios.post('http://localhost:1141/api/autorizacao/login', {
-      login: usuario,
-      senha: senha
-    });
-
-    const data = response.data;
-
-    if (data.access_token) {
-      localStorage.setItem('userToken', data.access_token);
-      alert('Login realizado com sucesso!');
-
-      if (salvarUsuario) {
-        localStorage.setItem('savedUsername', usuario);
-        localStorage.setItem('savedPassword', senha);
-      } else {
-        localStorage.removeItem('savedUsername');
-        localStorage.removeItem('savedPassword');
-      }
-
-      window.location.href = '/tabRoutes';
-    } else {
-      alert('Credenciais inválidas.');
-    }
-  } catch (error) {
-    alert('Erro ao autenticar. Tente novamente.');
-  } finally {
-    document.getElementById('loading').classList.add('hidden');
+  if (dashboard) {
+    dashboard.style.display = 'block';
+    dashboard.scrollIntoView({ behavior: 'smooth' });
   }
 }

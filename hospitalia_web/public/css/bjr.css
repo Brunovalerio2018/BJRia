@@ -1,0 +1,222 @@
+:root {
+  --neon-azul: #00c8ff;
+  --neon-fraco: rgba(80, 120, 255, 0.45);
+  --vidro: rgba(10, 25, 70, 0.25);
+  --vidro-forte: rgba(10, 25, 70, 0.18);
+  --texto: #ffffff;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* FUNDO GLOBAL */
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  color: var(--texto);
+  min-height: 100vh;
+
+  background:
+    radial-gradient(circle at top, rgba(255,255,255,0.05), transparent 60%),
+    linear-gradient(135deg, rgba(5,15,40,0.65), rgba(10,30,90,0.55)),
+    url("../img/hospitalia.png");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* SCAN IA */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(120,160,255,0.12),
+    transparent
+  );
+  animation: scan 8s linear infinite;
+}
+
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+
+/* ===== GLASS NEON BASE (LOGIN STYLE) ===== */
+.glass,
+.neon,
+.neon-card,
+.navbar,
+.submenu,
+.dashboard-card,
+.footer {
+  background: var(--vidro-forte);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--neon-fraco);
+  box-shadow:
+    0 0 15px var(--neon-fraco),
+    inset 0 0 12px rgba(255,255,255,0.05);
+  border-radius: 22px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 14px 32px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: 140px;
+  filter: drop-shadow(0 0 12px var(--neon-azul));
+}
+
+/* ===== MENU ===== */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 26px;
+}
+
+.nav-menu a {
+  color: var(--texto);
+  text-decoration: none;
+  font-weight: 600;
+  text-shadow: 0 0 8px var(--neon-fraco);
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--neon-azul);
+  box-shadow: 0 0 12px var(--neon-azul);
+  transition: 0.3s;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* ===== SUBMENU ===== */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 42px;
+  left: 0;
+  min-width: 240px;
+}
+
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  padding: 14px 22px;
+}
+
+.submenu li:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+/* ===== BOTÕES ===== */
+.btn-neon,
+.btn-neon-outline {
+  padding: 14px 42px;
+  border-radius: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.35s;
+}
+
+.btn-neon {
+  background: rgba(30, 70, 200, 0.35);
+  border: 1px solid var(--neon-azul);
+  color: white;
+  box-shadow: 0 0 20px var(--neon-fraco);
+}
+
+.btn-neon:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px var(--neon-azul);
+}
+
+.btn-neon-outline {
+  background: transparent;
+  border: 1px solid var(--neon-azul);
+  color: white;
+}
+
+/* ===== LANDING ===== */
+.landing {
+  margin-top: 160px;
+  padding: 90px 30px;
+  text-align: center;
+}
+
+.landing h1 {
+  font-size: 3rem;
+  text-shadow: 0 0 25px var(--neon-azul);
+}
+
+.landing p {
+  max-width: 800px;
+  margin: 20px auto;
+  opacity: 0.9;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  width: 95%;
+  max-width: 1300px;
+  margin: 90px auto;
+  padding: 50px;
+}
+
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+}
+
+.dashboard-card {
+  padding: 36px;
+  text-align: center;
+  transition: 0.4s;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-10px) scale(1.04);
+  box-shadow: 0 0 40px var(--neon-azul);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  margin: 40px auto;
+  padding: 18px;
+  width: fit-content;
+  text-align: center;
+  opacity: 0.85;
+}
