@@ -10,7 +10,7 @@ export class IaService {
   }
 
   // Verifica se o banco de dados está conectado
-  checkDatabase(): boolean {
+  checkDatabase(body: any): boolean {
     return AppDataSource.isInitialized; // true se banco inicializado
   }
 }

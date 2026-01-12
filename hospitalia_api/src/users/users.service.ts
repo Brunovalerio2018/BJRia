@@ -1,51 +1,31 @@
-import { Inject, Injectable } from "@nestjs/common";
-
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { users } from "./entities/user.entity";
+import { Users } from "./entities/user.entity";
 
 @Injectable()
 export class UsersService {
   constructor(
-    @Inject("USUARIOS_REPOSITORY")
-    private usuariosRepository: Repository<users>
+    @InjectRepository(Users) // <--- aqui, automaticamente o Nest resolve o repositório
+    private readonly usuariosRepository: Repository<Users>,
   ) {}
 
   async create(dados) {
-    try {
-      const response =  await this.usuariosRepository
-        .createQueryBuilder()
-        .insert()
-        .into(users)
-        .values({
-          ...dados,
-        })
-        .execute();
-      return response;
-    } catch (error) {
-      return error;
-    }
+    const usuario = this.usuariosRepository.create(dados);
+    return await this.usuariosRepository.save(usuario);
   }
-  async buscaPorId(id: number) {
-    const usuario = await this.usuariosRepository.findOne({
-      where: { id: id },
-    });
 
-    return usuario;
+  async buscaPorId(id: number) {
+    return this.usuariosRepository.findOne({ where: { id } });
   }
 
   async buscaPorLogin(login: string) {
-    const usuario = await this.usuariosRepository.findOne({
-      where: { matricula: login },
-    });
-
-    return usuario;
+    return this.usuariosRepository.findOne({ where: { matricula: login } });
   }
 
-  async buscaTodos(){
-    const usuarios = await this.usuariosRepository.find({
-    select:{id:true,nome:true,endereco:false,perfil:true,cpf:true,matricula:true,senha:false}
+  async buscaTodos() {
+    return this.usuariosRepository.find({
+      select: { id: true, nome: true, perfil: true, cpf: true, matricula: true },
     });
-  
-    return usuarios;
   }
 }

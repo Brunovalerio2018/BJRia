@@ -1,10 +1,10 @@
 import * as bcrypt from 'bcryptjs';
 
-import { users } from 'src/users/entities/user.entity';
+import { Users } from 'src/users/entities/user.entity';
 import { AppDataSource } from '../data-source';
 
 export async function createAdminSeed() {
-  const userRepo = AppDataSource.getRepository(users);
+  const userRepo = AppDataSource.getRepository(Users);
   const adminExists = await userRepo.findOne({ where: { email: 'admin@admin.com' } });
 
   if (!adminExists) {

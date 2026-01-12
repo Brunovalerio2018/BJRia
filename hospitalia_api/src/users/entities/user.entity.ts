@@ -7,23 +7,30 @@ import {
 } from "typeorm";
 
 @Entity({ name: "usuarios" })
-export class users {
+export class Users {
   @PrimaryGeneratedColumn()
   id: number;
+
   @Column()
   nome: string;
+
   @Column()
   email: string;
+
   @Column()
   senha: string;
+
   @Column()
   endereco: string;
+
   @Column()
-  cpf: string
+  cpf: string;
+
   @Column()
-  matricula: string
+  matricula: string;
+
   @Column()
-  perfil: string
+  perfil: string;
 
   @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;

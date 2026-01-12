@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
-import { users } from '../users/entities/user.entity'; // 🔹 Entidade direta
+import { Users } from '../users/entities/user.entity'; // 🔹 Entidade direta
 
 dotenv.config();
 
@@ -12,7 +12,7 @@ export const AppDataSource = new DataSource({
   username: process.env.USERNAME_BD,
   password: process.env.SENHA_BD,
   database: process.env.DATABASE_NAME,
-  entities: [users],
+  entities: [Users],
   migrations: [__dirname + '/migracoes/*.{ts,js}'],
   synchronize: false,
   logging: ['warn', 'error'],

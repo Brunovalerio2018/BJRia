@@ -5,77 +5,71 @@
   <title>BJRia • Sistema Hospitalar IA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/bjr.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 </head>
 
 <body>
 
 <header class="navbar neon">
-  <img src="../img/bjria.png" class="navbar-logo">
+  <img src="../img/bjria.png" class="navbar-logo" alt="BJRia">
 
   <ul class="nav-menu">
-    <li><a href="#">Dashboard</a></li>
+    <!-- Dashboard -->
+    <li><a href="../dashboard.html">Dashboard</a></li>
 
+    <!-- Pacientes -->
     <li class="has-submenu">
       <a href="#">Pacientes</a>
       <ul class="submenu neon">
-        <li><a href="#">Triagem IA</a></li>
-        <li><a href="#">Críticos</a></li>
-        <li><a href="#">Observação</a></li>
-        <li><a href="#">Alta Prevista</a></li>
-        <li><a href="#">Histórico</a></li>
+        <li><a href="../pacientes/triagem.html">Triagem IA</a></li>
+        <li><a href="../pacientes/criticos.html">Críticos</a></li>
+        <li><a href="../pacientes/observacao.html">Observação</a></li>
+        <li><a href="../pacientes/alta.html">Alta Prevista</a></li>
+        <li><a href="../pacientes/historico.html">Histórico</a></li>
       </ul>
     </li>
 
+    <!-- Hospitais / Unidades -->
     <li class="has-submenu">
       <a href="#">Hospitais</a>
       <ul class="submenu neon">
-        <li><a href="#">Mapa de Leitos</a></li>
-        <li><a href="#">UTI</a></li>
-        <li><a href="#">Capacidade</a></li>
-        <li><a href="#">Relatórios IA</a></li>
+        <li><a href="../hospitais/mapa-leitos.html">Mapa de Leitos</a></li>
+        <li><a href="../hospitais/uti.html">UTI</a></li>
+        <li><a href="../hospitais/capacidade.html">Capacidade</a></li>
+        <li><a href="../hospitais/relatorios-ia.html">Relatórios IA</a></li>
       </ul>
     </li>
 
+    <!-- IA Clínica -->
     <li class="has-submenu">
       <a href="#">IA Clínica</a>
       <ul class="submenu neon">
-        <li><a href="#">Pré-Triagem</a></li>
-        <li><a href="#">Diagnóstico</a></li>
-        <li><a href="#">Alertas</a></li>
-        <li><a href="#">Epidemiologia</a></li>
+        <li><a href="../ia/pre-triagem.html">Pré-Triagem</a></li>
+        <li><a href="../ia/diagnostico.html">Diagnóstico</a></li>
+        <li><a href="../bjria/ia/alertas.html">Alertas</a></li>
+        <li><a href="../ia/modelos.html">Modelos IA</a></li>
+      </ul>
+    </li>
+
+    <!-- Epidemiologia -->
+    <li><a href="../bjria/epidemiologia/mapa.html">Epidemiologia</a></li>
+
+    <!-- Auditoria / Gestão -->
+    <li class="has-submenu">
+      <a href="#">Administração</a>
+      <ul class="submenu neon">
+        <li><a href="../auditoria/logs.html">Logs</a></li>
+        <li><a href="../gestao/licencas.html">Licenças</a></li>
+        <li><a href="../gestao/usuarios.html">Usuários</a></li>
       </ul>
     </li>
   </ul>
 
+  <!-- Botões de ação -->
   <div class="nav-actions">
     <a class="btn-neon-outline" href="login.html">Login</a>
-    <a class="btn-neon">Entrar IA</a>
+    <a class="btn-neon" href="../dashboard.html">Entrar IA</a>
   </div>
 </header>
-
-<section class="landing neon-card">
-  <h1>Sistema Hospitalar Inteligente</h1>
-  <p>
-    Plataforma com IA para triagem, gestão de leitos,
-    alertas críticos e apoio clínico em tempo real.
-  </p>
-  <a class="btn-neon">Explorar Sistema</a>
-</section>
-
-<section class="dashboard neon-card">
-  <h2>Visão Geral</h2>
-
-  <div class="dashboard-cards">
-    <div class="dashboard-card neon">🧠 IA Ativa</div>
-    <div class="dashboard-card neon">💓 Pacientes Críticos</div>
-    <div class="dashboard-card neon">🏥 Leitos Monitorados</div>
-    <div class="dashboard-card neon">📊 Relatórios IA</div>
-  </div>
-</section>
-
-<footer class="footer neon">
-  © 2026 BJRia • HealthTech IA
-</footer>
-
 </body>
 </html>

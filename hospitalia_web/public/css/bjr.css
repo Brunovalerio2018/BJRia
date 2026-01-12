@@ -49,7 +49,7 @@ body::after {
   to { transform: translateY(100%); }
 }
 
-/* ===== GLASS NEON BASE (LOGIN STYLE) ===== */
+/* GLASS NEON BASE */
 .glass,
 .neon,
 .neon-card,
@@ -73,7 +73,6 @@ body::after {
   width: 100%;
   z-index: 1000;
   padding: 14px 32px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -115,7 +114,7 @@ body::after {
   width: 100%;
 }
 
-/* ===== SUBMENU ===== */
+/* ===== SUBMENU FUNCIONAL ===== */
 .has-submenu {
   position: relative;
 }
@@ -123,21 +122,32 @@ body::after {
 .submenu {
   display: none;
   position: absolute;
-  top: 42px;
+  top: 100%;
   left: 0;
   min-width: 240px;
+  background: var(--vidro);
+  border: 1px solid var(--neon-fraco);
+  border-radius: 14px;
+  box-shadow: 0 0 15px var(--neon-fraco);
+  z-index: 999;
+  animation: fadeIn 0.3s ease forwards;
 }
 
-.has-submenu:hover .submenu {
+/* Hover no menu pai ou submenu mantém visível */
+.has-submenu:hover > .submenu,
+.submenu:hover {
   display: block;
 }
 
 .submenu li {
   padding: 14px 22px;
+  transition: 0.3s;
 }
 
 .submenu li:hover {
-  background: rgba(255,255,255,0.08);
+  background: rgba(0, 200, 255, 0.1);
+  box-shadow: 0 0 12px var(--neon-azul);
+  transform: translateX(2px);
 }
 
 /* ===== BOTÕES ===== */
@@ -167,6 +177,12 @@ body::after {
   background: transparent;
   border: 1px solid var(--neon-azul);
   color: white;
+}
+
+.btn-neon-outline:hover {
+  background: rgba(0, 200, 255, 0.1);
+  box-shadow: 0 0 18px var(--neon-azul);
+  transform: translateY(-2px);
 }
 
 /* ===== LANDING ===== */
@@ -219,4 +235,22 @@ body::after {
   width: fit-content;
   text-align: center;
   opacity: 0.85;
+}
+
+/* ===== ANIMAÇÃO ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow:
+      0 0 18px rgba(0, 200, 255, 0.45),
+      inset 0 0 18px rgba(0, 200, 255, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(0, 200, 255, 0.65),
+      inset 0 0 30px rgba(0, 200, 255, 0.45);
+  }
 }

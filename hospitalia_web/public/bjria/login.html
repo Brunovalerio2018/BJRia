@@ -2,49 +2,64 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>BJRia - Sistema Hospitalar Digital</title>
+  <title>BJRia • Acesso ao Sistema Hospitalar IA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="../css/login.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script> 
+
+  <!-- Ícones -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
 </head>
+
 <body>
+  <main class="page-login">
 
-<div class="page-login">
-  
-  <!-- LOGIN -->
-  <div class="login-container">
-    
-    <!-- LOGO -->
-    <div class="logo-container">
-      <img src="../img/bjria.png" alt="BJRia" class="logo">
-    </div>
+    <section class="login-container">
 
-    <!-- LOGIN CARD -->
-    <div class="login-card">
-      <h2>Login</h2>
+      <!-- LOGO -->
+      <header class="logo-container">
+        <img src="../img/bjria.png" alt="BJRia" class="logo">
+      </header>
 
-      <form>
-        <label for="email">E-mail</label>
-        <input type="email" id="email" placeholder="seu@email.com" required>
+      <!-- CARD LOGIN -->
+      <article class="login-card">
+        <h2>Acesso ao Sistema</h2>
 
-        <label for="password">Senha</label>
-        <input type="password" id="password" placeholder="••••••••" required>
+        <form id="loginForm" autocomplete="on">
 
-        <button type="submit" class="btn-login">Entrar</button>
-      </form>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" placeholder="seu@email.com" required autocomplete="username">
+          </div>
 
-      <button class="btn-google">
-        <i class="fab fa-google"></i> Entrar com Google
-      </button>
+          <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+          </div>
 
-      <div class="login-options">
-        <a href="bjr.html" class="btn-visit">Visitar sem login</a>
-        <p><a href="#">Esqueceu a senha?</a></p>
-      </div>
-    </div>
+          <button type="submit" class="btn-login">Entrar no Sistema</button>
+        </form>
 
-  </div>
-</div>
+        <!-- LOGIN SOCIAL -->
+        <button class="btn-google" type="button">
+          <i class="fab fa-google"></i> Entrar com Google
+        </button>
+
+        <!-- OPÇÕES -->
+        <footer class="login-options">
+          <a href="bjr.html" class="btn-visit">Visitar o BJRia</a>
+          <p class="forgot-password"><a href="#">Esqueceu a senha?</a></p>
+        </footer>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- SCRIPT LOGIN -->
+  <script type="module" src="../js/main.js"></script>
 
 </body>
 </html>

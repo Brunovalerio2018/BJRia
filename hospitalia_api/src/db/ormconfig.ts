@@ -4,8 +4,9 @@ import * as dotenv from 'dotenv';
 import { join } from 'path';
 
 import bcrypt from 'bcryptjs';
-import { users } from 'src/users/entities/user.entity';
+
 import { AppDataSource } from './data-source';
+import { Users } from 'src/users/entities/user.entity';
 
 
 dotenv.config();
@@ -37,12 +38,12 @@ async function initializeDatabase() {
     allTables.forEach(t => console.log(`- ${t.name}`));
 
     // Criar usuário admin caso não exista
-        const userRepo = AppDataSource.getRepository(users);
+        const userRepo = AppDataSource.getRepository(Users);
     const userCount = await userRepo.count();
     if (userCount === 0) {
       const adminUser = userRepo.create({
-        nome: 'Admin',
-        email: 'admin@123.com',
+        nome: 'admin',
+        email: 'admin@admin.com',
         senha: await bcrypt.hash('admin123', 10),
         endereco: '', // ou um valor padrão
         cpf: '', // ou um valor padrão
@@ -54,7 +55,7 @@ async function initializeDatabase() {
     } else {
       console.log(`👤 Número de usuários no banco: ${userCount}`);
     }
-    
+
     await queryRunner.release();
   } catch (err) {
     console.error('❌ Erro ao conectar ou sincronizar o banco:', err);

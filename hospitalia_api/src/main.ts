@@ -5,6 +5,7 @@ import { SwaggerModule } from '@nestjs/swagger';
 
 import morgan from 'morgan';
 import { swagConfig } from './utils/swagger_config.ts';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -21,7 +22,13 @@ async function bootstrap() {
       apiSorter: 'alpha',
       operationsSorter: 'alpha'
     },
+    
   });
+    app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+  }));
 
   const port = 5050;
   await app.listen(port);
