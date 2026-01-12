@@ -1,10 +1,39 @@
-<main class="container neon-card">
-  <h1>Mapa Inteligente de Leitos</h1>
-  <p>Status em tempo real gerado por IA.</p>
+<main class="dashboard">
 
-  <div class="grid">
-    <div class="card neon">🟢 Leitos Livres</div>
-    <div class="card neon">🟠 Ocupação Alta</div>
-    <div class="card neon">🔴 Lotação Máxima</div>
+  <!-- Título -->
+  <section class="landing">
+    <h1>Mapa Inteligente de Leitos</h1>
+    <p>Status em tempo real gerado automaticamente pela IA.</p>
+  </section>
+
+  <!-- Cards de leitos -->
+  <div class="dashboard-cards">
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-bed fa-2x" style="color:#28a745;"></i>
+      <h3>Leitos Livres</h3>
+      <p>75 leitos disponíveis</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-bed fa-2x" style="color:#ffc107;"></i>
+      <h3>Ocupação Alta</h3>
+      <p>40 leitos com uso acima de 80%</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-bed fa-2x" style="color:#dc3545;"></i>
+      <h3>Lotação Máxima</h3>
+      <p>15 leitos críticos, atenção imediata</p>
+    </div>
+
   </div>
+
+  <!-- Botões de ação -->
+  <div class="dashboard-actions" style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+    <a href="../hospitais/uti.html" class="btn-neon">Ver UTI</a>
+    <a href="../hospitais/relatorios.html" class="btn-neon-outline">Capacidade Total</a>
+    <a href="../dashboard.html" class="btn-neon-outline">Voltar ao Dashboard</a>
+  </div>
+
 </main>

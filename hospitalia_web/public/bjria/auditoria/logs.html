@@ -1,10 +1,74 @@
-<main class="container neon-card">
-  <h1>Logs de Decisão da IA</h1>
-  <p>Rastreabilidade completa e juridicamente segura.</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Logs - Auditoria BJRia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <section class="neon-card">
-    <p>✔ Todas as decisões possuem explicação</p>
-    <p>✔ Versionamento de modelos</p>
-    <p>✔ Conformidade LGPD</p>
-  </section>
+  <link rel="stylesheet" href="../../css/bjr.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+</head>
+<body>
+
+<header class="navbar neon">
+  <img src="../../img/bjria.png" class="navbar-logo" alt="BJRia">
+  <!-- Navbar replicada do template base -->
+  <ul class="nav-menu">
+    <li><a href="../../dashboard.html">Dashboard</a></li>
+    <li class="has-submenu">
+      <a href="#">Pacientes</a>
+      <ul class="submenu neon">
+        <li><a href="../../pacientes/criticos.html">Críticos</a></li>
+        <li><a href="../../pacientes/historico.html">Histórico</a></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <a href="#">Hospitais</a>
+      <ul class="submenu neon">
+        <li><a href="../../hospitais/relatorios.html">Relatórios IA</a></li>
+        <li><a href="../../hospitais/uti.html">UTI</a></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <a href="#">IA Clínica</a>
+      <ul class="submenu neon">
+        <li><a href="../../ia/alertas.html">Alertas</a></li>
+        <li><a href="../../ia/diagnostico.html">Diagnóstico</a></li>
+      </ul>
+    </li>
+    <li><a href="../../epidemiologia/mapa.html">Epidemiologia</a></li>
+    <li class="has-submenu">
+      <a href="#">Administração</a>
+      <ul class="submenu neon">
+        <li><a href="../../auditoria/logs.html">Logs</a></li>
+        <li><a href="../../gestao/licencas.html">Licenças</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="nav-actions">
+    <a class="btn-neon-outline" href="../login.html">Logout</a>
+  </div>
+</header>
+
+<main class="dashboard">
+  <h1 class="landing">Logs de Auditoria</h1>
+
+  <div class="dashboard-cards">
+    <div class="dashboard-card glass">
+      <h3>Últimas Entradas</h3>
+      <p>Registro de atividade recente da IA e usuários.</p>
+    </div>
+    <div class="dashboard-card glass">
+      <h3>Alertas</h3>
+      <p>Eventos críticos detectados pelo sistema.</p>
+    </div>
+  </div>
 </main>
+
+<footer class="footer neon">
+  &copy; 2026 BJRia • Sistema Hospitalar IA
+</footer>
+
+</body>
+</html>

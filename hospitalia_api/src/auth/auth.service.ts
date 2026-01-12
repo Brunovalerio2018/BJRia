@@ -2,27 +2,33 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 
-
 @Injectable()
 export class AutorizacaoService {
-    login(login: string, senha: string) {
-        throw new Error('Method not implemented.');
-    }
-    constructor(private usuariosService: UsersService,
-        private jwtService: JwtService
-    ) {}
+  constructor(
+    private usuariosService: UsersService,
+    private jwtService: JwtService,
+  ) {}
 
+  // Método principal de login
   async signIn(login: string, password: string): Promise<any> {
+    // Busca o usuário pelo login
     const user = await this.usuariosService.buscaPorLogin(login);
-    if (user?.senha !== password) {
-      throw new UnauthorizedException();
+
+    // Se não encontrar ou senha inválida
+    if (!user || user.senha !== password) {
+      throw new UnauthorizedException('Usuário ou senha inválidos.');
     }
-    const { senha , ...result } = user;
+
+    // Remove senha do objeto retornado
+    const { senha, ...result } = user;
+
+    // Payload para o JWT
     const payload = { sub: user.id, username: user.matricula };
+
+    // Retorna token e dados do usuário
     return {
       access_token: await this.jwtService.signAsync(payload),
-      userInfo:result
+      userInfo: result,
     };
-    
-} 
+  }
 }

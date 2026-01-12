@@ -67,44 +67,37 @@ document.addEventListener('DOMContentLoaded', () => {
      LOGIN (JWT / API)
   ================================================== */
 
+
+  document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
 
   if (loginForm) {
-    loginForm.addEventListener('submit', async e => {
+    loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const usuario = document.getElementById('email').value;
       const senha = document.getElementById('password').value;
 
       try {
-        // 🔐 EXEMPLO REAL
-        /*
-        const res = await axios.post('http://localhost:5050/api/auth/login', {
-          email: usuario,
-          password: senha
+        const res = await axios.post('http://localhost:5050/autorizacao/login', {
+          login: usuario,
+          senha,
         });
 
-        localStorage.setItem('token', res.data.access_token);
-        */
+        if (res.data.success) {
+          localStorage.setItem('userInfo', JSON.stringify(res.data.userInfo));
+          localStorage.setItem('token', res.data.token);
 
-        // 🔧 SIMULAÇÃO
-        if (usuario && senha) {
-          localStorage.setItem('token', 'fake-jwt-token');
-
-          loginOverlay.classList.remove('active');
-
-          setTimeout(() => {
-            window.location.href = 'dashboard.html';
-          }, 700);
+          window.location.href = '/bjr.html'; // redireciona para o dashboard
         } else {
-          alert('Credenciais inválidas');
+          alert('Usuário ou senha inválidos');
         }
-
       } catch (err) {
-        alert('Erro ao autenticar');
+        alert(err.response?.data?.message || 'Erro ao autenticar');
       }
     });
   }
+});
 
 });
 

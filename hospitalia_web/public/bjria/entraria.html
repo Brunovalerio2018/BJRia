@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>BJRia • Entrada Funcionário IA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS Global Neon -->
+  <link rel="stylesheet" href="../css/bjr.css">
+
+  <!-- FontAwesome para ícones -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<header class="navbar neon">
+  <img src="../img/bjria.png" class="navbar-logo" alt="BJRia">
+
+  <ul class="nav-menu">
+    <li><a href="../dashboard.html">Dashboard</a></li>
+
+    <li class="has-submenu">
+      <a href="#">Pacientes</a>
+      <ul class="submenu neon">
+        <li><a href="../pacientes/triagem.html">Triagem IA</a></li>
+        <li><a href="../pacientes/criticos.html">Críticos</a></li>
+        <li><a href="../pacientes/observacao.html">Observação</a></li>
+        <li><a href="../pacientes/alta.html">Alta Prevista</a></li>
+        <li><a href="../pacientes/historico.html">Histórico</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="#">Hospitais</a>
+      <ul class="submenu neon">
+        <li><a href="../hospitais/mapa-leitos.html">Mapa de Leitos</a></li>
+        <li><a href="../hospitais/uti.html">UTI</a></li>
+        <li><a href="../hospitais/capacidade.html">Capacidade</a></li>
+        <li><a href="../hospitais/relatorios-ia.html">Relatórios IA</a></li>
+      </ul>
+    </li>
+
+    <li class="has-submenu">
+      <a href="#">IA Clínica</a>
+      <ul class="submenu neon">
+        <li><a href="../ia/pre-triagem.html">Pré-Triagem</a></li>
+        <li><a href="../ia/diagnostico.html">Diagnóstico</a></li>
+        <li><a href="../ia/alertas.html">Alertas</a></li>
+        <li><a href="../ia/modelos.html">Modelos IA</a></li>
+      </ul>
+    </li>
+
+    <li><a href="../epidemiologia/mapa.html">Epidemiologia</a></li>
+
+    <li class="has-submenu">
+      <a href="#">Administração</a>
+      <ul class="submenu neon">
+        <li><a href="../auditoria/logs.html">Logs</a></li>
+        <li><a href="../gestao/licencas.html">Licenças</a></li>
+        <li><a href="../gestao/usuarios.html">Usuários</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="nav-actions">
+    <a class="btn-neon-outline" href="../login.html">Logout</a>
+  </div>
+</header>
+
+<!-- ===== CONTEÚDO PRINCIPAL ===== -->
+<main class="dashboard">
+
+  <section class="landing">
+    <h1>Bem-vindo ao BJRia • Funcionário</h1>
+    <p>Acesso completo aos dashboards hospitalares e módulos de IA. 
+    Triagem, alertas e gestão hospitalar totalmente automatizados e auditáveis.</p>
+  </section>
+
+  <div class="dashboard-cards">
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-user-md fa-3x" style="color:#00c8ff;"></i>
+      <h3>Triagem Automática</h3>
+      <p>Visualize pacientes classificados automaticamente pelo sistema IA.</p>
+      <a class="btn-neon" href="../pacientes/triagem.html">Acessar</a>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-hospital fa-3x" style="color:#00c8ff;"></i>
+      <h3>Gestão de Leitos</h3>
+      <p>Controle de ocupação, UTI e recursos hospitalares em tempo real.</p>
+      <a class="btn-neon" href="../bjria/hospitais/leitos.html">Acessar</a>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-chart-line fa-3x" style="color:#00c8ff;"></i>
+      <h3>Alertas IA</h3>
+      <p>Notificações automáticas sobre pacientes críticos e padrões epidemiológicos.</p>
+      <a class="btn-neon" href="../bjria/ia/diagnostico.html">Acessar</a>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-file-alt fa-3x" style="color:#00c8ff;"></i>
+      <h3>Relatórios e Auditoria</h3>
+      <p>Logs detalhados, decisões auditáveis e relatórios de performance hospitalar.</p>
+      <a class="btn-neon" href="../bjria/auditoria/logs.html">Acessar</a>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-globe fa-3x" style="color:#00c8ff;"></i>
+      <h3>Epidemiologia Regional</h3>
+      <p>Visualização de surtos, tendências e alertas de saúde pública em tempo real.</p>
+      <a class="btn-neon" href="../bjria/epidemiologia/mapa.html">Acessar</a>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-cogs fa-3x" style="color:#00c8ff;"></i>
+      <h3>Configurações e Licenças</h3>
+      <p>Controle de módulos premium, contratos hospitalares e permissões de usuários.</p>
+      <a class="btn-neon" href="../bjria/gestao/licencas.html">Acessar</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer neon">
+  &copy; 2026 BJRia • Sistema Hospitalar 100% IA
+</footer>
+
+</body>
+</html>

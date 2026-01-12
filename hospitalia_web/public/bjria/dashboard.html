@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>BJRia • Dashboard IA Hospitalar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/bjr.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar neon">
+  <img src="../img/bjria.png" class="navbar-logo" alt="BJRia">
+
+  <ul class="nav-menu">
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li class="has-submenu">
+      <a href="#">Pacientes</a>
+      <ul class="submenu neon">
+        <li><a href="../bjria/pacientes/triagem.html">Triagem IA</a></li>
+        <li><a href="../bjria/pacientes/criticos.html">Críticos</a></li>
+        <li><a href="../bjria/pacientes/observacao.html">Observação</a></li>
+        <li><a href="../bjria/pacientes/alta.html">Alta Prevista</a></li>
+        <li><a href="../bjria/pacientes/historico.html">Histórico</a></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <a href="#">Hospitais</a>
+      <ul class="submenu neon">
+        <li><a href="../bjria/hospitais/leitos.html">Mapa de Leitos</a></li>
+        <li><a href="../bjria/hospitais/uti.html">UTI</a></li>
+        <li><a href="../bjria/hospitais/capacidade.html">Capacidade</a></li>
+        <li><a href="../bjria/hospitais/relatorios-ia.html">Relatórios IA</a></li>
+      </ul>
+    </li>
+    <li class="has-submenu">
+      <a href="#">IA Clínica</a>
+      <ul class="submenu neon">
+        <li><a href="../bjria/ia/pre-triagem.html">Pré-Triagem</a></li>
+        <li><a href="../bjria/ia/diagnostico.html">Diagnóstico</a></li>
+        <li><a href="../bjriaia/alertas.html">Alertas</a></li>
+        <li><a href="../bjria/ia/modelos.html">Modelos IA</a></li>
+      </ul>
+    </li>
+    <li><a href="../bjriaepidemiologia/mapa.html">Epidemiologia</a></li>
+    <li class="has-submenu">
+      <a href="#">Administração</a>
+      <ul class="submenu neon">
+        <li><a href="../bjriaauditoria/logs.html">Logs</a></li>
+        <li><a href="../bjriagestao/licencas.html">Licenças</a></li>
+        <li><a href="../bjriagestao/usuarios.html">Usuários</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="nav-actions">
+    <a class="btn-neon-outline" href="../bjria/login.html">Logout</a>
+  </div>
+</header>
+
+<!-- MAIN DASHBOARD -->
+<main class="dashboard">
+
+  <!-- Título -->
+  <section class="landing">
+    <h1>Dashboard BJRia</h1>
+    <p>Monitoramento hospitalar inteligente e auditável via IA.</p>
+  </section>
+
+  <!-- Cards de indicadores -->
+  <div class="dashboard-cards">
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-hospital fa-2x" style="color:#00c8ff;"></i>
+      <h3>Hospitais Ativos</h3>
+      <p>120 hospitais monitorados em tempo real.</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-user-injured fa-2x" style="color:#00c8ff;"></i>
+      <h3>Pacientes Triados</h3>
+      <p>3.450 pacientes classificados automaticamente.</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-procedures fa-2x" style="color:#00c8ff;"></i>
+      <h3>Leitos Ocupados</h3>
+      <p>UTI e enfermaria monitorados via IA em tempo real.</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-bell fa-2x" style="color:#00c8ff;"></i>
+      <h3>Alertas Críticos</h3>
+      <p>12 alertas ativos detectados automaticamente.</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-chart-line fa-2x" style="color:#00c8ff;"></i>
+      <h3>Uso Mensal</h3>
+      <p>Operações IA realizadas: 25.800.</p>
+    </div>
+
+    <div class="dashboard-card glass">
+      <i class="fas fa-coins fa-2x" style="color:#00c8ff;"></i>
+      <h3>ROI Estimado</h3>
+      <p>Economia anual estimada: R$ 3.250.000.</p>
+    </div>
+
+  </div>
+
+  <!-- Botões de ação rápida -->
+  <div class="dashboard-actions" style="margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;">
+    <a href="../bjria/bjriapacientes/triagem.html" class="btn-neon">Nova Triagem</a>
+    <a href="../bjria/bjria/mapa-leitos.html" class="btn-neon">Ver Leitos</a>
+    <a href="../bjria/bjria/ia/alertas.html" class="btn-neon-outline">Ver Alertas IA</a>
+    <a href="../bjria/gestao/licencas.html" class="btn-neon-outline">Licenças e ROI</a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer neon">
+  &copy; 2026 BJRia • Sistema Hospitalar IA Auditável
+</footer>
+
+</body>
+</html>

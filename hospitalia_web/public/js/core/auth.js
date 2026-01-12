@@ -1,18 +1,40 @@
-import { api } from './api.js';
+// auth.js
+import { api } from './api_axios.js';
 
-export function initAuth() {
-  const token = localStorage.getItem('token');
-  if (!token && location.pathname.includes('dashboard')) {
-    location.href = 'login.html';
+export async function login(email, senha) {
+  try {
+    const { data } = await api.post('/autorizacao/login', {
+      login: email,
+      senha
+    });
+
+    // Salva token e dados do usuário
+    localStorage.setItem('token', data.access_token);
+    localStorage.setItem('user', JSON.stringify(data.userInfo));
+
+    return true; // login ok
+  } catch (err) {
+    console.error('Login falhou:', err.response?.data || err.message);
+    return false; // login falhou
   }
-}
-
-export async function login(email, password) {
-  const { data } = await api.post('/auth/login', { email, password });
-  localStorage.setItem('token', data.access_token);
 }
 
 export function logout() {
   localStorage.removeItem('token');
-  location.href = 'login.html';
+  localStorage.removeItem('user');
+  window.location.href = 'login.html';
+}
+
+// Para proteger páginas privadas
+export function protectRoute() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    window.location.href = 'login.html';
+  }
+}
+
+// Pegar dados do usuário logado
+export function getUser() {
+  const user = localStorage.getItem('user');
+  return user ? JSON.parse(user) : null;
 }
