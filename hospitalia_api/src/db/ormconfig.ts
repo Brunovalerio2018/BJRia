@@ -2,13 +2,15 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 import { join } from 'path';
-import { User } from 'src/users/entities/user.entity';
+
 import bcrypt from 'bcryptjs';
+import { users } from 'src/users/entities/user.entity';
+import { AppDataSource } from './data-source';
 
 
 dotenv.config();
 
-export const AppDataSource = new DataSource({
+export const connectionOptions = new DataSource({
   type: 'postgres',
   host: process.env.HOST_BD,
   port: Number(process.env.PORT_BD) || 5432,
@@ -35,21 +37,24 @@ async function initializeDatabase() {
     allTables.forEach(t => console.log(`- ${t.name}`));
 
     // Criar usuário admin caso não exista
-    const userRepo = AppDataSource.getRepository(User);
+        const userRepo = AppDataSource.getRepository(users);
     const userCount = await userRepo.count();
     if (userCount === 0) {
       const adminUser = userRepo.create({
-        name: 'admin',
+        nome: 'Admin',
         email: 'admin@123.com',
-        password: await bcrypt.hash('admin123', 10),
-        role: 'admin', // só se você tiver a coluna role
+        senha: await bcrypt.hash('admin123', 10),
+        endereco: '', // ou um valor padrão
+        cpf: '', // ou um valor padrão
+        matricula: '', // ou um valor padrão
+        perfil: 'admin',
       });
       await userRepo.save(adminUser);
-      console.log('✅ Usuário admin criado: admin / admin123');
+      console.log('✅ Usuário admin criado: admin@123.com / admin123');
     } else {
       console.log(`👤 Número de usuários no banco: ${userCount}`);
     }
-
+    
     await queryRunner.release();
   } catch (err) {
     console.error('❌ Erro ao conectar ou sincronizar o banco:', err);

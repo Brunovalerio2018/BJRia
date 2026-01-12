@@ -1,26 +1,33 @@
-// src/users/entities/user.entity.ts
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from "typeorm";
 
-@Entity('users')
-export class User {
+@Entity({ name: "usuarios" })
+export class users {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column({ length: 100 })
-  name: string; // nome completo do usuário
-
-  @Column({ unique: true, length: 100 })
-  email: string; // email único para login
-
   @Column()
-  password: string; // senha (de preferência armazenada como hash)
+  nome: string;
+  @Column()
+  email: string;
+  @Column()
+  senha: string;
+  @Column()
+  endereco: string;
+  @Column()
+  cpf: string
+  @Column()
+  matricula: string
+  @Column()
+  perfil: string
 
-  @Column({ type: 'varchar', length: 20, default: 'user' })
-  role: string; // 'user' ou 'admin'
+  @CreateDateColumn({ type: "timestamp" })
+  createdAt: Date;
 
-  @CreateDateColumn()
-  created_at: Date; // data de criação do registro
-
-  @UpdateDateColumn()
-  updated_at: Date; // data da última atualização
+  @UpdateDateColumn({ type: "timestamp" })
+  updatedAt: Date;
 }

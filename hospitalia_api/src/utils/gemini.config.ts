@@ -2,9 +2,18 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class GeminiService {
-  // Para testes offline, vamos simular respostas
+  async ping(): Promise<boolean> {
+    try {
+      // aqui você pode fazer uma requisição mínima ao Gemini
+      await this.ask('Teste de ping');
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
   async ask(prompt: string): Promise<string> {
-    // Aqui você poderia chamar um modelo local, mas por agora é mock
-    return `Resposta simulada para: "${prompt}"`;
+    // lógica de comunicação com Gemini
+    return 'Resposta simulada';
   }
 }

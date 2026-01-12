@@ -1,19 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { AppDataSource } from '../db/data-source';
 
 @Injectable()
 export class IaService {
-  // Simula conexão com GPT-4/Gemini offline
-  async checkIA(): Promise<boolean> {
-    try {
-      // Aqui você chamaria a IA real, ex:
-      // const response = await gpt4.generate({ prompt: 'Teste' });
-      // return response ? true : false;
+  // Verifica se IA está funcionando (simulação)
+  checkIA(): boolean {
+    // Aqui você colocaria a verificação real da Gemini
+    return true; // 🟢 online
+  }
 
-      // Para teste offline:
-      return true;
-    } catch (error) {
-      console.error('Erro ao verificar a IA:', error);
-      return false;
-    }
+  // Verifica se o banco de dados está conectado
+  checkDatabase(): boolean {
+    return AppDataSource.isInitialized; // true se banco inicializado
   }
 }

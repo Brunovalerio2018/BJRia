@@ -6,8 +6,8 @@ import cors from 'cors';
 export class CorsMiddleware implements NestMiddleware {
   private corsOptions = {
     origin: ['http://localhost:5050/api#', 
-             'http://localhost:3000'], // liberando apenas localhost
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+             'http://localhost:3000/bjria/login.html'], // liberando apenas localhost
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH',  'OPTIONS',  'UPDATE'],
     credentials: true,
   };
 

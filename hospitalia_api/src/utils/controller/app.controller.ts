@@ -3,7 +3,7 @@ import { GeminiService } from '../gemini.config';
 
 
 @Controller('gemini')
-export class AppController {
+export class GeminiController {
   constructor(private readonly geminiService: GeminiService) {}
 
   @Get('ask')
