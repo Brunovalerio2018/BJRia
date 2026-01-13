@@ -1,3 +1,7 @@
 npm run typeorm:generate-migration --name=NomeDaMigration gera todas as migration
-npm run typeorm:create-migration roda as migrations que ja foram geradas e conecta ao banco
+npm run typeorm:create-migration roda as migrations que jssssssssssssa foram geradas e conecta ao banco
 npm run start:dev executa a api e roda as migrations
+
+git add . adiciona todos os arquivos ou arquivo ou pasta especifica
+git commit -m "Aqui fica o comentario da versao do seu projeto"
+git push origin master enviar para o git

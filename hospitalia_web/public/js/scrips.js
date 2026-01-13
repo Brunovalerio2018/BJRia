@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert(err.response?.data?.message || 'Erro ao autenticar');
       }
     });
-  }
+  } 
 });
 
 });

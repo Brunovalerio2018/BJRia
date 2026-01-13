@@ -6,6 +6,9 @@ import { UpdateAdminDto } from './dto/update-admin.dto';
 
 @Injectable()
 export class AdminService {
+  findByLogin(login: string) {
+    throw new Error('Method not implemented.');
+  }
   adminRepository: any;
   create(createAdminDto: CreateAdminDto) {
     return 'This action adds a new admin';
