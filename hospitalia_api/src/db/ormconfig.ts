@@ -8,7 +8,6 @@ import bcrypt from 'bcryptjs';
 import { AppDataSource } from './data-source';
 import { Users } from 'src/users/entities/user.entity';
 
-
 dotenv.config();
 
 export const connectionOptions = new DataSource({
@@ -32,13 +31,8 @@ async function initializeDatabase() {
 
     const queryRunner = AppDataSource.createQueryRunner();
 
-    // Listar tabelas
-    const allTables = await queryRunner.getTables();
-    console.log('📦 Tabelas existentes no banco:');
-    allTables.forEach(t => console.log(`- ${t.name}`));
-
-    // Criar usuário admin caso não exista
-        const userRepo = AppDataSource.getRepository(Users);
+    // Sincroniza o esquema do banco de dados
+    const userRepo = AppDataSource.getRepository(Users);
     const userCount = await userRepo.count();
     if (userCount === 0) {
       const adminUser = userRepo.create({

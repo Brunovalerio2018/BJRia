@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { IaService } from '../ia/ia.service';
 import { AppDataSource } from '../db/data-source'; // <-- chama o AppDataSource direto
-import { swagConfig } from 'src/utils/swagger_config.ts';
-import { IaController } from 'src/ia/ia.controller';
+
 
 
 export type ComponentStatus = {
@@ -56,7 +56,7 @@ export class StatusService {
     let iaColor = '#FFA500';
     let iaCode: 'connecting' | 'online' | 'offline' = 'connecting';
     try {
-      const alive = await this.iaService.checkIA();
+      const alive = this.iaService.checkIA();
       if (alive) {
         iaStatus = '🟢 Online';
         iaColor = '#00ff00';

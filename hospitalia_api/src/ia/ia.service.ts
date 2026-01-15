@@ -1,16 +1,71 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { AppDataSource } from '../db/data-source';
+import { IaService } from 'src/module/ia.controller';
+
+
+export type ComponentStatus = {
+  name: string;
+  status: string;
+  colorCode: string;
+  statusCode: 'online' | 'connecting' | 'offline';
+};
 
 @Injectable()
-export class IaService {
-  // Verifica se IA está funcionando (simulação)
-  checkIA(): boolean {
-    // Aqui você colocaria a verificação real da Gemini
-    return true; // 🟢 online
-  }
+export class StatusService {
+  constructor(private readonly iaService: IaService) {}
 
-  // Verifica se o banco de dados está conectado
-  checkDatabase(body: any): boolean {
-    return AppDataSource.isInitialized; // true se banco inicializado
+     getStatus() {
+    const components: ComponentStatus[] = [];
+
+    // API
+    components.push({
+      name: 'API',
+      status: '🟢 Online',
+      colorCode: '#00ff00',
+      statusCode: 'online',
+    });
+
+    // Banco
+    const dbAlive = this.iaService.checkDatabase();
+    components.push(
+      dbAlive
+        ? {
+            name: 'Banco PostgreSQL',
+            status: '🟢 Online',
+            colorCode: '#00ff00',
+            statusCode: 'online',
+          }
+        : {
+            name: 'Banco PostgreSQL',
+            status: '🔴 Offline',
+            colorCode: '#ff0000',
+            statusCode: 'offline',
+          },
+    );
+
+    // IA
+    const iaAlive = this.iaService.checkIA();
+    components.push(
+      iaAlive
+        ? {
+            name: 'IA (Gemini)',
+            status: '🟢 Online',
+            colorCode: '#00ff00',
+            statusCode: 'online',
+          }
+        : {
+            name: 'IA (Gemini)',
+            status: '🔴 Offline',
+            colorCode: '#ff0000',
+            statusCode: 'offline',
+          },
+    );
+
+    return {
+      components,
+      timestamp: new Date().toISOString(),
+    };
   }
 }
+export { IaService };
+

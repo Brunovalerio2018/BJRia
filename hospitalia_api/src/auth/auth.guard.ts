@@ -9,7 +9,6 @@ import { Reflector } from '@nestjs/core';
 import { Request } from 'express';
 import { IS_PUBLIC_KEY, jwtConstants } from './constantes';
 
-
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
@@ -37,11 +36,13 @@ export class AuthGuard implements CanActivate {
 
     try {
       // Verifica e decodifica o token JWT
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const payload = await this.jwtService.verifyAsync(token, {
         secret: jwtConstants.secret,
       });
 
       // Adiciona o payload ao request para acesso em controllers
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       request.body = payload;
 
       return true;

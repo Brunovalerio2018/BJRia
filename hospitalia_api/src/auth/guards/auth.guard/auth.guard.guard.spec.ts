@@ -1,6 +1,7 @@
+import { describe } from 'node:test';
 import { AuthGuardGuard } from './auth.guard.guard';
 
-describe('AuthGuardGuard', () => {
+void describe('AuthGuardGuard', () => {
   it('should be defined', () => {
     expect(new AuthGuardGuard()).toBeDefined();
   });

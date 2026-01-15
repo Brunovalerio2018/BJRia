@@ -20,6 +20,7 @@ export class AutorizacaoService {
     }
 
     // Remove senha do objeto retornado
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { senha, ...result } = user;
 
     // Payload para o JWT
